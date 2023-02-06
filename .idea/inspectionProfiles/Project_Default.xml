@@ -1,0 +1,71 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyInterpreterInspection" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="57">
+            <item index="0" class="java.lang.String" itemvalue="PyJWT" />
+            <item index="1" class="java.lang.String" itemvalue="requests-aws4auth" />
+            <item index="2" class="java.lang.String" itemvalue="unidecode" />
+            <item index="3" class="java.lang.String" itemvalue="nltk" />
+            <item index="4" class="java.lang.String" itemvalue="python-dateutil" />
+            <item index="5" class="java.lang.String" itemvalue="zenpy" />
+            <item index="6" class="java.lang.String" itemvalue="requests" />
+            <item index="7" class="java.lang.String" itemvalue="elasticsearch-dsl-fb" />
+            <item index="8" class="java.lang.String" itemvalue="elasticsearch" />
+            <item index="9" class="java.lang.String" itemvalue="pyOpenSSL" />
+            <item index="10" class="java.lang.String" itemvalue="schematics" />
+            <item index="11" class="java.lang.String" itemvalue="datadog" />
+            <item index="12" class="java.lang.String" itemvalue="masterlock.py" />
+            <item index="13" class="java.lang.String" itemvalue="gevent" />
+            <item index="14" class="java.lang.String" itemvalue="urllib3" />
+            <item index="15" class="java.lang.String" itemvalue="blinker" />
+            <item index="16" class="java.lang.String" itemvalue="revolver" />
+            <item index="17" class="java.lang.String" itemvalue="amqp" />
+            <item index="18" class="java.lang.String" itemvalue="wheel" />
+            <item index="19" class="java.lang.String" itemvalue="statsd" />
+            <item index="20" class="java.lang.String" itemvalue="flask-restful" />
+            <item index="21" class="java.lang.String" itemvalue="gunicorn" />
+            <item index="22" class="java.lang.String" itemvalue="click" />
+            <item index="23" class="java.lang.String" itemvalue="FreshUtils" />
+            <item index="24" class="java.lang.String" itemvalue="ddtrace" />
+            <item index="25" class="java.lang.String" itemvalue="boto3" />
+            <item index="26" class="java.lang.String" itemvalue="statsdecor" />
+            <item index="27" class="java.lang.String" itemvalue="sparkplug" />
+            <item index="28" class="java.lang.String" itemvalue="elasticsearch-dsl" />
+            <item index="29" class="java.lang.String" itemvalue="auth.py" />
+            <item index="30" class="java.lang.String" itemvalue="hashids" />
+            <item index="31" class="java.lang.String" itemvalue="flask" />
+            <item index="32" class="java.lang.String" itemvalue="elasticsearch-fb" />
+            <item index="33" class="java.lang.String" itemvalue="idna" />
+            <item index="34" class="java.lang.String" itemvalue="mysqlclient" />
+            <item index="35" class="java.lang.String" itemvalue="sqlalchemy_utils" />
+            <item index="36" class="java.lang.String" itemvalue="flask-swagger-ui" />
+            <item index="37" class="java.lang.String" itemvalue="greenlet" />
+            <item index="38" class="java.lang.String" itemvalue="html5lib" />
+            <item index="39" class="java.lang.String" itemvalue="python-daemon" />
+            <item index="40" class="java.lang.String" itemvalue="Babel" />
+            <item index="41" class="java.lang.String" itemvalue="flask-sqlalchemy" />
+            <item index="42" class="java.lang.String" itemvalue="marshmallow" />
+            <item index="43" class="java.lang.String" itemvalue="marshmallow-oneofschema" />
+            <item index="44" class="java.lang.String" itemvalue="Jinja2" />
+            <item index="45" class="java.lang.String" itemvalue="sqlalchemy" />
+            <item index="46" class="java.lang.String" itemvalue="lockfile" />
+            <item index="47" class="java.lang.String" itemvalue="freshbooks-redis-py" />
+            <item index="48" class="java.lang.String" itemvalue="cookiecutter" />
+            <item index="49" class="java.lang.String" itemvalue="future" />
+            <item index="50" class="java.lang.String" itemvalue="bleach" />
+            <item index="51" class="java.lang.String" itemvalue="flask_datadog_metrics" />
+            <item index="52" class="java.lang.String" itemvalue="fresh-api" />
+            <item index="53" class="java.lang.String" itemvalue="mock" />
+            <item index="54" class="java.lang.String" itemvalue="marshmallow_enum" />
+            <item index="55" class="java.lang.String" itemvalue="pytz" />
+            <item index="56" class="java.lang.String" itemvalue="backports.zoneinfo" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
