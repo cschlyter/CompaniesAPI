@@ -94,6 +94,16 @@ class CreateNewCompanyTest(TestCase):
             content_type='application/json'
         )
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Company.objects.count(), 1)
+        self.assertEqual(Company.objects.get().name, json.loads(response.content)["name"])
+        self.assertEqual(Company.objects.get().phone, json.loads(response.content)["phone"])
+        self.assertEqual(Company.objects.get().address, json.loads(response.content)["address"])
+        self.assertEqual(Company.objects.get().address_additional_info, json.loads(response.content)["address_additional_info"])
+        self.assertEqual(Company.objects.get().city, json.loads(response.content)["city"])
+        self.assertEqual(Company.objects.get().state, json.loads(response.content)["state"])
+        self.assertEqual(Company.objects.get().country, json.loads(response.content)["country"])
+        self.assertEqual(str(Company.objects.get().earnings_declared), json.loads(response.content)["earnings_declared"])
+        self.assertIsNotNone(Company.objects.get().created_at)
 
     def test_create_invalid_company(self):
         response = client.post(

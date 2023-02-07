@@ -8,6 +8,7 @@ from .serializers import CompanySerializer, BankSerializer, BankAccountSerialize
 class CompanyList(generics.ListCreateAPIView):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
+    paginate_by = 30
     authentication_classes = [TokenAuthentication, ]
     permission_classes = (IsAuthenticated,)
 
@@ -22,6 +23,7 @@ class CompanyDetail(generics.RetrieveUpdateDestroyAPIView):
 class BankList(generics.ListCreateAPIView):
     queryset = Bank.objects.all()
     serializer_class = BankSerializer
+    paginate_by = 30
     authentication_classes = [TokenAuthentication, ]
     permission_classes = (IsAuthenticated,)
 
@@ -36,6 +38,7 @@ class BankDetail(generics.RetrieveUpdateDestroyAPIView):
 class BankAccountList(generics.ListCreateAPIView):
     queryset = BankAccount.objects.all()
     serializer_class = BankAccountSerializer
+    paginate_by = 30
     authentication_classes = [TokenAuthentication, ]
     permission_classes = (IsAuthenticated,)
 

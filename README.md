@@ -1,7 +1,7 @@
 # Companies API
 
 
-## Installation
+## Local Installation
 
 Inside CompaniesAPI dir run the following commands:
 
@@ -27,6 +27,10 @@ To run the tests use:
 To run the server use:
 `python manage.py runserver`
 
+## For running with Docker
+Inside CompaniesAPI dir:
+`docker-compose up`
+
 ## API Docs
 To see the API docs, in your browser navigate to:
-`http://127.0.0.1:8000/swagger-ui/`
+`http://127.0.0.1:8000/docs/`
