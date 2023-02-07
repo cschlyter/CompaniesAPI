@@ -5,6 +5,8 @@ from django.urls import reverse
 from companies.models import Company
 from companies.serializers import CompanySerializer
 from companies.tests.factories import CompanyFactory
+from rest_framework.authtoken.models import Token
+from django.contrib.auth.models import User
 
 
 client = Client()
@@ -15,10 +17,15 @@ class GetAllCompaniesTest(TestCase):
 
     def setUp(self):
         CompanyFactory.create_batch(5)
+        self.user = User.objects.create_user('test_user', 'test@test.com', 'test123')
+        self.token = Token.objects.create(user=self.user)
 
     def test_get_all_companies(self):
         # get API response
-        response = client.get(reverse('company_list'))
+        response = client.get(
+            reverse('company_list'),
+            HTTP_AUTHORIZATION=f'Token {self.token.key}'
+        )
         # get data from db
         companies = Company.objects.all()
         serializer = CompanySerializer(companies, many=True)
@@ -32,10 +39,14 @@ class GetSingleCompaniesTest(TestCase):
 
     def setUp(self):
         self.company_1 = CompanyFactory()
+        self.user = User.objects.create_user('test_user', 'test@test.com', 'test123')
+        self.token = Token.objects.create(user=self.user)
 
     def test_get_valid_single_company(self):
         response = client.get(
-            reverse('company_detail', kwargs={'pk': self.company_1.pk}))
+            reverse('company_detail', kwargs={'pk': self.company_1.pk}),
+            HTTP_AUTHORIZATION=f'Token {self.token.key}'
+        )
         company = Company.objects.get(pk=self.company_1.pk)
         serializer = CompanySerializer(company)
         self.assertEqual(response.data, serializer.data)
@@ -43,7 +54,9 @@ class GetSingleCompaniesTest(TestCase):
 
     def test_get_invalid_single_company(self):
         response = client.get(
-            reverse('company_detail', kwargs={'pk': 30}))
+            reverse('company_detail', kwargs={'pk': 30}),
+            HTTP_AUTHORIZATION=f'Token {self.token.key}'
+        )
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 
 
@@ -55,6 +68,9 @@ class CreateNewCompanyTest(TestCase):
             'name': 'Copper Wire',
             'phone': '48995481447',
             'address': 'address test',
+            'city': 'address test',
+            'state': 'address test',
+            'country': 'address test',
             'earnings_declared': 1,
         }
         self.invalid_payload = {
@@ -67,10 +83,13 @@ class CreateNewCompanyTest(TestCase):
             'address': 'address test',
             'earnings_declared': 1,
         }
+        self.user = User.objects.create_user('test_user', 'test@test.com', 'test123')
+        self.token = Token.objects.create(user=self.user)
 
     def test_create_valid_company(self):
         response = client.post(
             reverse('company_list'),
+            HTTP_AUTHORIZATION=f'Token {self.token.key}',
             data=json.dumps(self.valid_payload),
             content_type='application/json'
         )
@@ -79,6 +98,7 @@ class CreateNewCompanyTest(TestCase):
     def test_create_invalid_company(self):
         response = client.post(
             reverse('company_list'),
+            HTTP_AUTHORIZATION=f'Token {self.token.key}',
             data=json.dumps(self.invalid_phone_payload),
             content_type='application/json'
         )
@@ -87,6 +107,7 @@ class CreateNewCompanyTest(TestCase):
     def test_create_company_validates_phone_number(self):
         response = client.post(
             reverse('company_list'),
+            HTTP_AUTHORIZATION=f'Token {self.token.key}',
             data=json.dumps(self.invalid_payload),
             content_type='application/json'
         )
@@ -103,16 +124,22 @@ class UpdateSingleCompanyTest(TestCase):
             'name': 'Copper Wire',
             'phone': '48995481447',
             'address': 'address test',
+            'city': 'address test',
+            'state': 'address test',
+            'country': 'address test',
             'earnings_declared': 1,
         }
         self.invalid_payload = {
             'name': '',
             'phone': 'SADF2',
         }
+        self.user = User.objects.create_user('test_user', 'test@test.com', 'test123')
+        self.token = Token.objects.create(user=self.user)
 
     def test_valid_update_company(self):
         response = client.put(
             reverse('company_detail', kwargs={'pk': self.company_1.pk}),
+            HTTP_AUTHORIZATION=f'Token {self.token.key}',
             data=json.dumps(self.valid_payload),
             content_type='application/json'
         )
@@ -121,6 +148,7 @@ class UpdateSingleCompanyTest(TestCase):
     def test_invalid_update_company(self):
         response = client.put(
             reverse('company_detail', kwargs={'pk': self.company_1.pk}),
+            HTTP_AUTHORIZATION=f'Token {self.token.key}',
             data=json.dumps(self.invalid_payload),
             content_type='application/json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -131,13 +159,19 @@ class DeleteSingleCompanyTest(TestCase):
 
     def setUp(self):
         self.company_1 = CompanyFactory()
+        self.user = User.objects.create_user('test_user', 'test@test.com', 'test123')
+        self.token = Token.objects.create(user=self.user)
 
     def test_valid_delete_company(self):
         response = client.delete(
-            reverse('company_detail', kwargs={'pk': self.company_1.pk}))
+            reverse('company_detail', kwargs={'pk': self.company_1.pk}),
+            HTTP_AUTHORIZATION=f'Token {self.token.key}',
+        )
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
     def test_invalid_delete_company(self):
         response = client.delete(
-            reverse('company_detail', kwargs={'pk': 30}))
+            reverse('company_detail', kwargs={'pk': 30}),
+            HTTP_AUTHORIZATION=f'Token {self.token.key}',
+        )
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)

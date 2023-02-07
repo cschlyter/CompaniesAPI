@@ -15,6 +15,10 @@ class CompanyFactory(factory.django.DjangoModelFactory):
     name = factory.Faker("company")
     phone = factory.Faker("phone_number")
     address = factory.Faker("address")
+    address_additional_info = factory.Faker("address")
+    city = factory.Faker("address")
+    state = factory.Faker("address")
+    country = factory.Faker("address")
     earnings_declared = factory.Faker("pydecimal", left_digits=5, right_digits=4, positive=True)
 
 class BankAccountFactory(factory.django.DjangoModelFactory):

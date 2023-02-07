@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 from rest_framework.schemas import get_schema_view
+from rest_framework.authtoken import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('api/v1/', include('companies.urls')),
+    path('api-token-auth/', views.obtain_auth_token),
     path('openapi', get_schema_view(
         title="Companies API",
         description="Companies API.",
