@@ -5,6 +5,23 @@
 
 Inside CompaniesAPI dir run the following commands:
 
+### - Postgres
+It's recommended to use Postgres with Docker. To do it Run:
+
+
+`docker run -d -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres --name posttest -p 5432:5432 postgres`
+
+To create the database run:
+`psql -h 127.0.0.1 -p 5432 -U postgres`
+
+The password is "postgres"
+
+After connecting to Postgres run:
+
+`create database companies_api with owner postgres;`
+
+The local database will be created.
+
 ### - Create a virtual ENV
 `python3 -m venv .venv`
 
@@ -32,5 +49,10 @@ Inside CompaniesAPI dir:
 `docker-compose up`
 
 ## API Docs
-To see the API docs, in your browser navigate to:
-`http://127.0.0.1:8000/docs/`
+To see the API docs you first need to create a superuser and login to django admin:
+`python manage.py createsuperuser`
+
+Login to django admin in http://127.0.0.1:8000/admin/
+
+And with your server running navigate to http://127.0.0.1:8000/docs/
+
